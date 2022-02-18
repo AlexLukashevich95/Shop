@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class Product {
     private Long id ;
     private String name ;
@@ -6,6 +8,9 @@ public class Product {
 
     Product(Long id, String name, Long price, Long rating){
         this.id=id;
+        this.name=name;
+        this.price=price;
+        this.rating=rating;
     }
 
     public Long getId() {
@@ -39,8 +44,4 @@ public class Product {
     public void setRating(Long rating) {
         this.rating = rating;
     }
-
-
-
-
 }
