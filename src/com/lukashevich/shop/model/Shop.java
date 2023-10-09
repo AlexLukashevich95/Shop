@@ -13,7 +13,7 @@ public class Shop {
     public Shop(Long id, String name, String address, List<Product> products) {
         this.id = id;
         this.name = name;
-        this.address = address;
+        this.address= address;
         this.products = products;
     }
 
