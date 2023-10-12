@@ -1,4 +1,4 @@
-package com.lukashevich.shop;
+package com.lukashevich.shop.application;
 
 public class Main {
     public static void main(String[] args) {
