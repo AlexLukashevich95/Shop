@@ -2,9 +2,7 @@ package com.lukashevich.shop.service;
 
 import com.lukashevich.shop.model.Shop;
 
-public class ShopService {
+public interface ShopService {
 
-    private Shop saveShop(Shop shop){
-        return shop;
-    }
+    Shop saveShop(Shop shop);
 }
