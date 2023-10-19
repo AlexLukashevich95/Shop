@@ -27,7 +27,7 @@ public class Main {
             switch (action) {
                 case 1:
                     String nameShop,address;
-                    ArrayList<Product> products = new ArrayList<>();
+                    //ArrayList<Product> products = new ArrayList<>();
                     System.out.println("Write shop name:");
                     nameShop = sc.nextLine();
                     System.out.println("Write shop address:");
