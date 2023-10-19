@@ -1,7 +1,6 @@
 package com.lukashevich.shop.service.impl;
 
 import com.lukashevich.shop.model.Shop;
-import com.lukashevich.shop.repository.ShopRepository;
 import com.lukashevich.shop.repository.impl.ShopRepositoryImpl;
 import com.lukashevich.shop.service.ShopService;
 
