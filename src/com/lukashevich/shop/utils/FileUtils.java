@@ -1,4 +1,4 @@
-package com.lukashevich.shop;
+package com.lukashevich.shop.utils;
 
 import java.io.File;
 import java.io.FileReader;
@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 
-public class FileProccess {
+public class FileUtils {
 
     public void writeData(String fileName,String dataString){
         File file = new File(fileName);
