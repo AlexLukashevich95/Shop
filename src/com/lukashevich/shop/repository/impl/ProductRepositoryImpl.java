@@ -6,10 +6,10 @@ import com.lukashevich.shop.repository.ProductRepository;
 import com.lukashevich.shop.utils.FileUtils;
 
 public class ProductRepositoryImpl implements ProductRepository {
+    Gson gson= new Gson();
+    FileUtils fileUtils = new FileUtils();
     @Override
     public Product saveProduct(Product product) {
-        Gson gson= new Gson();
-        FileUtils fileUtils =new FileUtils();
         fileUtils.writeData("ProductData.txt",
                 gson.toJson(product));
         return null;

@@ -7,6 +7,7 @@ public class ProductController {
     ProductServiceImpl productService = new ProductServiceImpl();
 
     public Product saveProduct(Product product){
-        return productService.saveProduct(product);
+        productService.saveProduct(product);
+        return product;
     }
 }
