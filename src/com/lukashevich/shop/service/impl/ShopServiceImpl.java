@@ -4,6 +4,8 @@ import com.lukashevich.shop.model.Shop;
 import com.lukashevich.shop.repository.ShopRepository;
 import com.lukashevich.shop.service.ShopService;
 
+import java.util.List;
+
 public class ShopServiceImpl implements ShopService {
     private final ShopRepository shopRepository;
 
@@ -17,7 +19,8 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Shop getShopByID(String id) {
-        return shopRepository.getShopById(id);
+    public List<Shop> getAllShops() {
+        return shopRepository.getAllShops();
     }
+
 }

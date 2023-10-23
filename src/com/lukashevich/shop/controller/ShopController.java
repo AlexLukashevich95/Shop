@@ -3,6 +3,8 @@ package com.lukashevich.shop.controller;
 import com.lukashevich.shop.model.Shop;
 import com.lukashevich.shop.service.ShopService;
 
+import java.util.List;
+
 public class ShopController {
     private final ShopService shopService;
 
@@ -15,8 +17,8 @@ public class ShopController {
         return shop;
     }
 
-    public Shop getShopById(String id){
-        shopService.getShopByID(id);
+    public List<Shop> getAllShops(){
+        shopService.getAllShops();
         return null;
     }
 }

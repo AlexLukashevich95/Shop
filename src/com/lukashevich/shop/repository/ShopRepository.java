@@ -2,8 +2,10 @@ package com.lukashevich.shop.repository;
 
 import com.lukashevich.shop.model.Shop;
 
+import java.util.List;
+
 public interface ShopRepository {
     Shop saveShop(Shop shop);
 
-    Shop getShopById(String id);
+    List<Shop> getAllShops();
 }
