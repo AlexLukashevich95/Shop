@@ -19,6 +19,10 @@ public class Product {
         this.dateOfAdding = dateOfAdding;
     }
 
+    public Product(){
+
+    }
+
     public Long getId() {
         return id;
     }

@@ -27,8 +27,9 @@ public class Menu {
             switch (sc.nextInt()) {
                 case 0:
                     loop = false;
+                    break;
                 case 1:
-                    Shop shop = null;
+                    Shop shop = new Shop();
                     sc.nextLine();
                     System.out.println("Write shop name");
                     shop.setName(sc.nextLine());
@@ -38,7 +39,7 @@ public class Menu {
                     shopController.saveShop(shop);
                     break;
                 case 2:
-                    Product product = null;
+                    Product product = new Product();
                     sc.nextLine();
                     System.out.println("Write product name");
                     product.setName(sc.nextLine());
@@ -54,10 +55,10 @@ public class Menu {
                     productController.saveProduct(product);
                     break;
                 case 3:
-                    shopController.getAllShops();
+                    shopController.getAllShops().forEach(System.out::println);
                     break;
                 case 4:
-                    productController.getAllProducts();
+                    productController.getAllProducts().forEach(System.out::println);
                     break;
                 default:
                     System.out.println("Please input proposed option");

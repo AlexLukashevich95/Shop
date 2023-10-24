@@ -17,6 +17,9 @@ public class Shop {
         this.products = products;
     }
 
+    public Shop(){
+    }
+
     public Long getId() {
         return id;
     }

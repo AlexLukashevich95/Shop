@@ -15,10 +15,6 @@ import com.lukashevich.shop.service.impl.ProductServiceImpl;
 import com.lukashevich.shop.service.impl.ShopServiceImpl;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {

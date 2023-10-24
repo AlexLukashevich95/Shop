@@ -15,7 +15,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product saveProduct(Product product) {
+    public Product saveProduct(Product product) throws IOException {
         productRepository.saveProduct(product);
         return null;
     }
