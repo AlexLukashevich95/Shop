@@ -1,20 +1,27 @@
 package com.lukashevich.shop.service.impl;
 
 import com.lukashevich.shop.model.Product;
+import com.lukashevich.shop.repository.ProductRepository;
 import com.lukashevich.shop.repository.impl.ProductRepositoryImpl;
 import com.lukashevich.shop.service.ProductService;
 
-public class ProductServiceImpl implements ProductService {
+import java.io.IOException;
+import java.util.List;
 
+public class ProductServiceImpl implements ProductService {
     ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
 
-    @Override
-    public Product saveProduct(Product product) {
-        return productRepository.saveProduct(product);
+    public ProductServiceImpl(ProductRepository productRepository) {
     }
 
     @Override
-    public Product getProductById(String id) {
-        return productRepository.getProductById(id);
+    public Product saveProduct(Product product) throws IOException {
+        productRepository.saveProduct(product);
+        return null;
+    }
+
+    @Override
+    public List<Product> getAllProducts() throws IOException {
+        return productRepository.getAllProducts();
     }
 }

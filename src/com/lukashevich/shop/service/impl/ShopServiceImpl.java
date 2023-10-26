@@ -1,17 +1,27 @@
 package com.lukashevich.shop.service.impl;
 
 import com.lukashevich.shop.model.Shop;
-import com.lukashevich.shop.repository.impl.ShopRepositoryImpl;
+import com.lukashevich.shop.repository.ShopRepository;
 import com.lukashevich.shop.service.ShopService;
 
+import java.io.IOException;
+import java.util.List;
+
 public class ShopServiceImpl implements ShopService {
-    ShopRepositoryImpl shopRepository = new ShopRepositoryImpl();
+    private final ShopRepository shopRepository;
 
-    @Override
-    public Shop saveShop(Shop shop) {return shopRepository.saveShop(shop);}
-
-    @Override
-    public Shop getShopById(String id) {
-        return shopRepository.getShopById(id);
+    public ShopServiceImpl(ShopRepository shopRepository){
+        this.shopRepository=shopRepository;
     }
+
+    @Override
+    public Shop saveShop(Shop shop) throws IOException {
+        return shopRepository.saveShop(shop);
+    }
+
+    @Override
+    public List<Shop> getAllShops() throws IOException {
+        return shopRepository.getAllShops();
+    }
+
 }

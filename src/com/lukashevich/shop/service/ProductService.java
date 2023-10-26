@@ -2,8 +2,10 @@ package com.lukashevich.shop.service;
 
 import com.lukashevich.shop.model.Product;
 
-public interface ProductService {
-    Product saveProduct(Product product);
+import java.io.IOException;
+import java.util.List;
 
-    Product getProductById(String id);
+public interface ProductService {
+    Product saveProduct(Product product) throws IOException;
+    List<Product> getAllProducts() throws IOException;
 }
