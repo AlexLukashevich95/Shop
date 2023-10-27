@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ProductService {
     Product saveProduct(Product product) throws IOException;
+
     List<Product> getAllProducts() throws IOException;
 }

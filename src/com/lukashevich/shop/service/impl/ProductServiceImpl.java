@@ -9,15 +9,15 @@ import java.io.IOException;
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
-    ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
+    private final ProductRepository productRepository;
 
     public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository=productRepository;
     }
 
     @Override
     public Product saveProduct(Product product) throws IOException {
-        productRepository.saveProduct(product);
-        return null;
+        return productRepository.saveProduct(product);
     }
 
     @Override

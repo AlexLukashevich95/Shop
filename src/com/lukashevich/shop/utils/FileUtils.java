@@ -13,8 +13,7 @@ public class FileUtils {
             } else {
                 System.out.println("Файл уже существует");
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Ошибка при создании файла");
             e.printStackTrace();
         }

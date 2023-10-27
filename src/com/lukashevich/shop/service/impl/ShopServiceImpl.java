@@ -10,8 +10,8 @@ import java.util.List;
 public class ShopServiceImpl implements ShopService {
     private final ShopRepository shopRepository;
 
-    public ShopServiceImpl(ShopRepository shopRepository){
-        this.shopRepository=shopRepository;
+    public ShopServiceImpl(ShopRepository shopRepository) {
+        this.shopRepository = shopRepository;
     }
 
     @Override

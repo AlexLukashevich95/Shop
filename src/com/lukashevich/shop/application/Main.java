@@ -14,10 +14,11 @@ import com.lukashevich.shop.service.ShopService;
 import com.lukashevich.shop.service.impl.ProductServiceImpl;
 import com.lukashevich.shop.service.impl.ShopServiceImpl;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         ShopRepository shopRepository = new ShopRepositoryImpl();
         ShopService shopService = new ShopServiceImpl(shopRepository);
         ShopController shopController = new ShopController(shopService);
@@ -26,7 +27,7 @@ public class Main {
         ProductService productService = new ProductServiceImpl(productRepository);
         ProductController productController = new ProductController(productService);
 
-        Menu menu = new Menu(productController,shopController);
+        Menu menu = new Menu(productController, shopController);
         menu.runMenu();
     }
 

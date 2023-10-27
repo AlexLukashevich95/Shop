@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ShopService {
     Shop saveShop(Shop shop) throws IOException;
+
     List<Shop> getAllShops() throws IOException;
 }
