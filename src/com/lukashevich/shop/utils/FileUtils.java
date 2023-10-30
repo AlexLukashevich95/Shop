@@ -2,11 +2,12 @@ package com.lukashevich.shop.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 public class FileUtils {
 
-    public File getOrCreateFile(String fileName) {
-        File file = new File(fileName);
+    public static File getOrCreateFile(Class cclass) throws IOException {
+        File file = new File(PropertiesUtil.getFileName(cclass));
         try {
             if (file.createNewFile()) {
                 System.out.println("Файл создан");

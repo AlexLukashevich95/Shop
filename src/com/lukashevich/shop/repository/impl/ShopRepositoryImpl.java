@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.lukashevich.shop.model.Product;
 import com.lukashevich.shop.model.Shop;
+import com.lukashevich.shop.repository.AbstractFileRepository;
 import com.lukashevich.shop.repository.ShopRepository;
 import com.lukashevich.shop.utils.FileUtils;
 
@@ -17,38 +18,20 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShopRepositoryImpl implements ShopRepository {
-    private final Gson gson;
-    private final FileUtils fileUtils;
+public class ShopRepositoryImpl extends AbstractFileRepository<Shop> implements ShopRepository {
 
-    public ShopRepositoryImpl() {
-        this.gson = new GsonBuilder().create();
-        this.fileUtils = new FileUtils();
+    protected ShopRepositoryImpl(Class<Shop> shopClass) {
+        super(shopClass);
     }
 
     @Override
     public Shop saveShop(Shop shop) throws IOException {
-        File file = fileUtils.getOrCreateFile("ShopData.json");
-        List<Shop> shops = getAllShops();
-        shop.setId((long) shops.size() + 1);
-        shops.add(shop);
-        FileWriter writer = new FileWriter(file, false);
-        writer.write(gson.toJson(shops));
-        writer.flush();
-        writer.close();
-        return shop;
+        return super.saveModel(shop);
     }
 
     @Override
     public List<Shop> getAllShops() throws IOException {
-        File file = fileUtils.getOrCreateFile("ShopData.json");
-        if (file.length() == 0) {
-            return new ArrayList<>();
-        }
-        String shopsJson = new String(Files.readAllBytes(Path.of(file.getPath())));
-        Type type = new TypeToken<ArrayList<Shop>>() {
-        }.getType();
-        return gson.fromJson(shopsJson, type);
+        return super.getAllModels();
     }
 
 }
