@@ -2,8 +2,11 @@ package com.lukashevich.shop.repository;
 
 import com.lukashevich.shop.model.Shop;
 
-public interface ShopRepository {
-    Shop saveShop(Shop shop);
+import java.io.IOException;
+import java.util.List;
 
-    Shop getShopById(String id);
+public interface ShopRepository {
+    Shop saveShop(Shop shop) throws IOException;
+
+    List<Shop> getAllShops() throws IOException;
 }

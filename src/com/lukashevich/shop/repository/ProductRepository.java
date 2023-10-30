@@ -3,8 +3,11 @@ package com.lukashevich.shop.repository;
 
 import com.lukashevich.shop.model.Product;
 
-public interface ProductRepository {
-    Product saveProduct(Product product);
+import java.io.IOException;
+import java.util.List;
 
-    Product getProductById(String id);
+public interface ProductRepository {
+    Product saveProduct(Product product) throws IOException;
+
+    List<Product> getAllProducts() throws IOException;
 }
