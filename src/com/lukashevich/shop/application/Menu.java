@@ -63,15 +63,22 @@ public class Menu {
                     productController.saveProduct(product);
                     break;
                 case 3:
-                    shopController.getAllShops().forEach(s -> System.out.println("name: "+s.getName()+" || address: "+s.getAddress()));
+                    shopController.getAllShops().forEach(this::printShop);
                     break;
                 case 4:
-                    productController.getAllProducts().forEach(s -> System.out.println("name: "+s.getName()+" || type: "+s.getType()));
+                    productController.getAllProducts().forEach(this::printProduct);
                     break;
                 default:
                     System.out.println("Please input proposed option");
 
             }
         }
+    }
+
+    private void printShop(Shop shop){
+        System.out.println("name: "+shop.getName()+" || address: "+shop.getAddress());
+    }
+    private void printProduct(Product product){
+        System.out.println("name: "+product.getName()+" || type: "+product.getType());
     }
 }
