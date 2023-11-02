@@ -3,12 +3,12 @@ package com.lukashevich.shop.model;
 import java.util.Date;
 
 public class Product {
-    private Long id ;
-    private String name ;
-    private Long price ;
+    private Long id;
+    private String name;
+    private Long price;
     private Long quantity;
-    private String type ;
-    private Date dateOfAdding ;
+    private String type;
+    private Date dateOfAdding;
 
     public Product(Long id, String name, Long price, Long quantity, String type, Date dateOfAdding) {
         this.id = id;
@@ -17,6 +17,10 @@ public class Product {
         this.quantity = quantity;
         this.type = type;
         this.dateOfAdding = dateOfAdding;
+    }
+
+    public Product() {
+
     }
 
     public Long getId() {
