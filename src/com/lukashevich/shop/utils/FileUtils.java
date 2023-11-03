@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class FileUtils {
 
-    public static File getOrCreateFile(Class cclass) throws IOException {
-        File file = new File(PropertiesUtil.getFileName(cclass));
+    public static File getOrCreateFile(Class aclass) throws IOException {
+        File file = new File(PropertiesUtil.getFileName(aclass));
         try {
             if (file.createNewFile()) {
                 System.out.println("Файл создан");

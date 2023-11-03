@@ -15,9 +15,9 @@ public class ProductController {
     }
 
     public Product saveProduct(Product product) {
-        try{
+        try {
             productService.saveProduct(product);
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
         return product;
@@ -25,9 +25,9 @@ public class ProductController {
 
     public List<Product> getAllProducts() {
         List<Product> list = new ArrayList<>();
-        try{
-            list=productService.getAllProducts();
-        }catch (IOException e){
+        try {
+            list = productService.getAllProducts();
+        } catch (IOException e) {
             System.out.println(e);
         }
         return list;
