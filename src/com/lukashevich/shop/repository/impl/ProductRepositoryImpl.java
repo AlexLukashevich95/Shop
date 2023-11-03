@@ -30,10 +30,10 @@ public class ProductRepositoryImpl implements ProductRepository {
         List<Product> products = getAllProducts();
         product.setId((long) products.size() + 1);
         products.add(product);
-        FileWriter writer = new FileWriter(file, false);
-        writer.write(gson.toJson(products));
-        writer.flush();
-        writer.close();
+        try (FileWriter writer = new FileWriter(file, false)){
+            writer.write(gson.toJson(products));
+            writer.flush();
+        }
         return product;
     }
 
