@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.lukashevich.shop.model.Product;
-import com.lukashevich.shop.model.Shop;
 import com.lukashevich.shop.repository.ProductRepository;
 import com.lukashevich.shop.utils.FileUtils;
 
@@ -30,7 +29,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         List<Product> products = getAllProducts();
         product.setId((long) products.size() + 1);
         products.add(product);
-        try (FileWriter writer = new FileWriter(file, false)){
+        try (FileWriter writer = new FileWriter(file, false)) {
             writer.write(gson.toJson(products));
             writer.flush();
         }

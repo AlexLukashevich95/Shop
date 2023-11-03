@@ -29,7 +29,7 @@ public class ShopRepositoryImpl implements ShopRepository {
         List<Shop> shops = getAllShops();
         shop.setId((long) shops.size() + 1);
         shops.add(shop);
-        try(FileWriter writer = new FileWriter(file, false)) {
+        try (FileWriter writer = new FileWriter(file, false)) {
             writer.write(gson.toJson(shops));
             writer.flush();
         }

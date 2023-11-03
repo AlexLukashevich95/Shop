@@ -2,41 +2,19 @@ package com.lukashevich.shop.model;
 
 import java.util.Date;
 
-public class Product {
-    private Long id;
-    private String name;
+public class Product extends Model {
     private Long price;
     private Long quantity;
     private String type;
-    private Date dateOfAdding;
 
     public Product(Long id, String name, Long price, Long quantity, String type, Date dateOfAdding) {
-        this.id = id;
-        this.name = name;
+        super(id, name, dateOfAdding);
         this.price = price;
         this.quantity = quantity;
         this.type = type;
-        this.dateOfAdding = dateOfAdding;
     }
 
     public Product() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getPrice() {
@@ -61,13 +39,5 @@ public class Product {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Date getDateOfAdding() {
-        return dateOfAdding;
-    }
-
-    public void setDateOfAdding(Date dateOfAdding) {
-        this.dateOfAdding = dateOfAdding;
     }
 }

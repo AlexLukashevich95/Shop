@@ -1,39 +1,19 @@
 package com.lukashevich.shop.model;
 
+import java.util.Date;
 import java.util.List;
 
-public class Shop {
-
-    private Long id;
-    private String name;
+public class Shop extends Model {
     private String address;
     private List<Product> products;
 
-
-    public Shop(Long id, String name, String address, List<Product> products) {
-        this.id = id;
-        this.name = name;
+    public Shop(Long id, String name, String address, List<Product> products, Date dateOfAdding) {
+        super(id, name, dateOfAdding);
         this.address = address;
         this.products = products;
     }
 
     public Shop() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getAddress() {
