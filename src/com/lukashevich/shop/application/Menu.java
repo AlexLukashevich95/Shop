@@ -2,10 +2,10 @@ package com.lukashevich.shop.application;
 
 import com.lukashevich.shop.controller.ProductController;
 import com.lukashevich.shop.controller.ShopController;
+import com.lukashevich.shop.model.Address;
 import com.lukashevich.shop.model.Product;
 import com.lukashevich.shop.model.Shop;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -33,7 +33,7 @@ public class Menu {
                     System.out.println("Write shop name");
                     shop.setName(sc.nextLine());
                     System.out.println("Write shop address");
-                    shop.setAddress(sc.nextLine());
+                    shop.setAddress(new Address(1L, new Date(), "city1", "street1", 1, 1));
                     shopController.saveShop(shop);
                     break;
                 case 2:
@@ -44,14 +44,14 @@ public class Menu {
                     System.out.println("Write product price");
                     try {
                         product.setPrice(sc.nextLong());
-                    }catch (InputMismatchException e){
+                    } catch (InputMismatchException e) {
                         System.out.println(e);
                         break loop;
                     }
                     System.out.println("Write product quantity");
                     try {
                         product.setQuantity(sc.nextLong());
-                    }catch (InputMismatchException e){
+                    } catch (InputMismatchException e) {
                         System.out.println(e);
                         break loop;
                     }
@@ -63,7 +63,7 @@ public class Menu {
                     productController.saveProduct(product);
                     break;
                 case 3:
-                    shopController.getAllShops().forEach(System.out::println);
+                    shopController.getAllShops().forEach(this::writeShop);
                     break;
                 case 4:
                     productController.getAllProducts().forEach(System.out::println);
@@ -72,5 +72,19 @@ public class Menu {
                     System.out.println("Please input proposed option");
             }
         }
+    }
+
+    private void writeShop(Shop shop) {
+        System.out.println(shop.getId());
+        System.out.println(shop.getName());
+        writeAddress(shop.getAddress());
+        System.out.println(shop.getDateOfAdding());
+
+    }
+    private void writeAddress(Address address) {
+        System.out.println(address.getCity());
+        System.out.println(address.getStreet());
+        System.out.println(address.getHouseNumber());
+        System.out.println(address.getApartmentNumber());
     }
 }
