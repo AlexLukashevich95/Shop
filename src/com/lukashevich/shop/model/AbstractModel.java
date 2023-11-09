@@ -2,18 +2,18 @@ package com.lukashevich.shop.model;
 
 import java.util.Date;
 
-public abstract class Model {
+public abstract class AbstractModel {
     private Long id;
     private String name;
     private Date dateOfAdding;
 
-    public Model(Long id, String name, Date dateOfAdding) {
+    public AbstractModel(Long id, String name, Date dateOfAdding) {
         this.id = id;
         this.name = name;
         this.dateOfAdding = dateOfAdding;
     }
 
-    public Model() {
+    public AbstractModel() {
     }
 
     public Long getId() {

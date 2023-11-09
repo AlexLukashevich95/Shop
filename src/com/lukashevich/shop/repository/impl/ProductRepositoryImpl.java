@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductRepositoryImpl implements ProductRepository {
+public class ProductRepositoryImpl extends AbstractRepositoryImpl implements ProductRepository {
     private final Gson gson;
 
     public ProductRepositoryImpl() {
