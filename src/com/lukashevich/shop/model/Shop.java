@@ -3,7 +3,7 @@ package com.lukashevich.shop.model;
 import java.util.Date;
 import java.util.List;
 
-public class Shop extends AbstractModel {
+public class Shop extends BaseModel {
     private String address;
     private List<Product> products;
 

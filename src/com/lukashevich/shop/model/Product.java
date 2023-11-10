@@ -2,7 +2,7 @@ package com.lukashevich.shop.model;
 
 import java.util.Date;
 
-public class Product extends AbstractModel {
+public class Product extends BaseModel {
     private Long price;
     private Long quantity;
     private String type;
