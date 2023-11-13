@@ -60,8 +60,6 @@ public class Menu {
                     sc.nextLine();
                     System.out.println("Write product type");
                     product.setType(sc.nextLine());
-                    Date date2 = new Date();
-                    product.setDateOfAdding(date2);
                     productController.saveProduct(product);
                     break;
                 case 3:

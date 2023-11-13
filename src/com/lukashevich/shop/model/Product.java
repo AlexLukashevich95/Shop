@@ -4,14 +4,24 @@ import java.util.Date;
 
 public class Product extends BaseModel {
     private Long price;
+    private String name;
     private Long quantity;
     private String type;
 
     public Product(Long id, String name, Long price, Long quantity, String type, Date dateOfAdding) {
-        super(id, name, dateOfAdding);
+        super(id, dateOfAdding);
+        this.name=name;
         this.price = price;
         this.quantity = quantity;
         this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Product() {

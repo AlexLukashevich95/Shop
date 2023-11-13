@@ -14,28 +14,25 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class AbstractRepositoryImpl <T extends BaseModel>{
+public class BaseRepository<T extends BaseModel>{
     private final Gson gson;
     private final Class<?> tClass;
 
-    public AbstractRepositoryImpl() {
+    public BaseRepository() {
         this.gson = new GsonBuilder().create();
         this.tClass = (Class<?>)((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];;
     }
 
-    public String getClassName(){
-        return this.tClass.getName();
-    }
-
     public T save(T object) throws IOException {
-        String objectType = getClassName();
-        System.out.println(objectType);
-        File file = FileUtils.getOrCreateFile(getClassName()+"Data.json");
+        File file = FileUtils.getOrCreateFile(tClass);
         List<T> objects = getAll();
         object.setId((long) objects.size() + 1);
+        Date date = new Date();
+        object.setDateOfAdding(date);
         objects.add(object);
         try (FileWriter writer = new FileWriter(file, false)) {
             writer.write(gson.toJson(objects));
@@ -45,9 +42,7 @@ public class AbstractRepositoryImpl <T extends BaseModel>{
     }
 
     public List<T> getAll() throws IOException {
-        String objectType = getClassName();
-        System.out.println(objectType);
-        File file = FileUtils.getOrCreateFile(getClassName()+"Data.json");
+        File file = FileUtils.getOrCreateFile(tClass);
         if (file.length() == 0) {
             return new ArrayList<>();
         }

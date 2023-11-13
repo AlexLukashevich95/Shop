@@ -3,27 +3,20 @@ package com.lukashevich.shop.application;
 
 import com.lukashevich.shop.controller.ProductController;
 import com.lukashevich.shop.controller.ShopController;
-import com.lukashevich.shop.model.Product;
-import com.lukashevich.shop.model.Shop;
-import com.lukashevich.shop.repository.ProductRepository;
-import com.lukashevich.shop.repository.ShopRepository;
-import com.lukashevich.shop.repository.impl.ProductRepositoryImpl;
-import com.lukashevich.shop.repository.impl.ShopRepositoryImpl;
+import com.lukashevich.shop.repository.impl.ProductRepository;
+import com.lukashevich.shop.repository.impl.ShopRepository;
 import com.lukashevich.shop.service.ProductService;
 import com.lukashevich.shop.service.ShopService;
 import com.lukashevich.shop.service.impl.ProductServiceImpl;
 import com.lukashevich.shop.service.impl.ShopServiceImpl;
 
-import java.awt.*;
-import java.io.IOException;
-
 public class Main {
     public static void main(String[] args){
-        ShopRepository shopRepository = new ShopRepositoryImpl();
+        com.lukashevich.shop.repository.ShopRepository shopRepository = new ShopRepository();
         ShopService shopService = new ShopServiceImpl(shopRepository);
         ShopController shopController = new ShopController(shopService);
 
-        ProductRepository productRepository = new ProductRepositoryImpl();
+        com.lukashevich.shop.repository.ProductRepository productRepository = new ProductRepository();
         ProductService productService = new ProductServiceImpl(productRepository);
         ProductController productController = new ProductController(productService);
 

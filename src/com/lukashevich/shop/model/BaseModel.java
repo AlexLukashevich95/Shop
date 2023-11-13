@@ -4,12 +4,10 @@ import java.util.Date;
 
 public abstract class BaseModel {
     private Long id;
-    private String name;
     private Date dateOfAdding;
 
-    public BaseModel(Long id, String name, Date dateOfAdding) {
+    public BaseModel(Long id, Date dateOfAdding) {
         this.id = id;
-        this.name = name;
         this.dateOfAdding = dateOfAdding;
     }
 
@@ -24,13 +22,6 @@ public abstract class BaseModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Date getDateOfAdding() {
         return dateOfAdding;
