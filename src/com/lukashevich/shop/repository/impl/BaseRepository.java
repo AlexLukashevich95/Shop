@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.lukashevich.shop.model.BaseModel;
+import com.lukashevich.shop.model.Shop;
 import com.lukashevich.shop.utils.FileUtils;
 
 import java.io.File;
@@ -42,13 +43,14 @@ public class BaseRepository<T extends BaseModel>{
     }
 
     public List<T> getAll() throws IOException {
-        File file = FileUtils.getOrCreateFile(tClass);
+        File file = FileUtils.getOrCreateFile( tClass);
         if (file.length() == 0) {
             return new ArrayList<>();
         }
         String objectsJson = new String(Files.readAllBytes(Path.of(file.getPath())));
-        Type type = new TypeToken<ArrayList<T>>() {
-        }.getType();
+
+        Type type = TypeToken.getParameterized(List.class,tClass).getType();
+        System.out.println(type.getTypeName());
         return gson.fromJson(objectsJson, type);
     }
 }
