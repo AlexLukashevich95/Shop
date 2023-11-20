@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Shop extends BaseModel {
     private String name;
-    private Long id_address;
+    private Address address;
     private List<Product> products;
 
-    public Shop(Long id,String name, Long id_address, List<Product> products, Date dateOfAdding) {
+    public Shop(Long id,String name, Address address, List<Product> products, Date dateOfAdding) {
         super(id, dateOfAdding);
         this.name=name;
-        this.id_address = id_address;
+        this.address = address;
         this.products = products;
     }
 
@@ -24,12 +24,12 @@ public class Shop extends BaseModel {
     public void setName(String name) {
         this.name = name;
     }
-    public Long getAddress() {
-        return id_address;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddress(Long id_address) {
-        this.id_address = id_address;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public List<Product> getProducts() {

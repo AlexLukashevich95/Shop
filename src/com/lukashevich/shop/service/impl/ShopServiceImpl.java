@@ -7,7 +7,7 @@ import com.lukashevich.shop.service.ShopService;
 import java.io.IOException;
 import java.util.List;
 
-public class ShopServiceImpl implements ShopService {
+public class ShopServiceImpl  implements ShopService {
     private final ShopRepository shopRepository;
 
     public ShopServiceImpl(ShopRepository shopRepository) {
@@ -23,5 +23,4 @@ public class ShopServiceImpl implements ShopService {
     public List<Shop> getAllShops() throws IOException {
         return shopRepository.getAllShops();
     }
-
 }

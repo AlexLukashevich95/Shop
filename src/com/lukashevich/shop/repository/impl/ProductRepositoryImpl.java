@@ -1,13 +1,14 @@
 package com.lukashevich.shop.repository.impl;
 
 import com.lukashevich.shop.model.Product;
+import com.lukashevich.shop.repository.ProductRepository;
 
 import java.io.IOException;
 import java.util.List;
 
-public class ProductRepository extends BaseRepository<Product> implements com.lukashevich.shop.repository.ProductRepository {
+public class ProductRepositoryImpl extends BaseRepository<Product> implements ProductRepository {
 
-    public ProductRepository() {
+    public ProductRepositoryImpl () {
     }
 
     @Override

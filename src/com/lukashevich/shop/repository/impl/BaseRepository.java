@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.lukashevich.shop.model.BaseModel;
-import com.lukashevich.shop.model.Shop;
 import com.lukashevich.shop.utils.FileUtils;
 
 import java.io.File;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class BaseRepository<T extends BaseModel>{
+public abstract class BaseRepository<T extends BaseModel>{
     private final Gson gson;
     private final Class<?> tClass;
 
@@ -50,7 +49,6 @@ public class BaseRepository<T extends BaseModel>{
         String objectsJson = new String(Files.readAllBytes(Path.of(file.getPath())));
 
         Type type = TypeToken.getParameterized(List.class,tClass).getType();
-        System.out.println(type.getTypeName());
         return gson.fromJson(objectsJson, type);
     }
 }
