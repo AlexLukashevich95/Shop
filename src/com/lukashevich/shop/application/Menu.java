@@ -34,6 +34,8 @@ public class Menu {
                     shop.setName(sc.nextLine());
                     System.out.println("Write shop address");
                     shop.setAddress(sc.nextLine());
+                    Date date1 = new Date();
+                    shop.setDateOfAdding(date1);
                     shopController.saveShop(shop);
                     break;
                 case 2:
@@ -44,22 +46,20 @@ public class Menu {
                     System.out.println("Write product price");
                     try {
                         product.setPrice(sc.nextLong());
-                    }catch (InputMismatchException e){
+                    } catch (InputMismatchException e) {
                         System.out.println("Incorrect type of data. Please use numbers");
                         break;
                     }
                     System.out.println("Write product quantity");
                     try {
                         product.setQuantity(sc.nextLong());
-                    }catch (InputMismatchException e){
+                    } catch (InputMismatchException e) {
                         System.out.println("Incorrect type of data. Please use numbers");
                         break;
                     }
                     sc.nextLine();
                     System.out.println("Write product type");
                     product.setType(sc.nextLine());
-                    Date date = new Date();
-                    product.setDateOfAdding(date);
                     productController.saveProduct(product);
                     break;
                 case 3:
@@ -75,10 +75,11 @@ public class Menu {
         }
     }
 
-    private void printShop(Shop shop){
-        System.out.println("name: "+shop.getName()+" || address: "+shop.getAddress());
+    private void printShop(Shop shop) {
+        System.out.println("name: " + shop.getName() + " || address: " + shop.getAddress());
     }
-    private void printProduct(Product product){
-        System.out.println("name: "+product.getName()+" || type: "+product.getType());
+
+    private void printProduct(Product product) {
+        System.out.println("name: " + product.getName() + " || type: " + product.getType());
     }
 }
