@@ -27,7 +27,9 @@ public abstract class BaseModel {
         return dateOfAdding;
     }
 
+
     public void setDateOfAdding(Date dateOfAdding) {
         this.dateOfAdding = dateOfAdding;
     }
+
 }

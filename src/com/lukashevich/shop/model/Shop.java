@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Shop extends BaseModel {
     private String name;
-    private String address;
+    private Address address;
     private List<Product> products;
 
-    public Shop(Long id,String name, String address, List<Product> products, Date dateOfAdding) {
+    public Shop(Long id,String name, Address address, List<Product> products, Date dateOfAdding) {
         super(id, dateOfAdding);
         this.name=name;
         this.address = address;
@@ -24,11 +24,11 @@ public class Shop extends BaseModel {
     public void setName(String name) {
         this.name = name;
     }
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
