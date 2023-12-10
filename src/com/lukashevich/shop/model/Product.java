@@ -3,17 +3,18 @@ package com.lukashevich.shop.model;
 import java.util.Date;
 
 public class Product extends BaseModel {
-    private Long price;
     private String name;
-    private Long quantity;
+    private Long price;
     private String type;
 
-    public Product(Long id, String name, Long price, Long quantity, String type, Date dateOfAdding) {
+    public Product(Long id, Date dateOfAdding, String name, Long price, String type) {
         super(id, dateOfAdding);
-        this.name=name;
+        this.name = name;
         this.price = price;
-        this.quantity = quantity;
         this.type = type;
+    }
+
+    public Product() {
     }
 
     public String getName() {
@@ -24,23 +25,12 @@ public class Product extends BaseModel {
         this.name = name;
     }
 
-    public Product() {
-    }
-
     public Long getPrice() {
         return price;
     }
 
     public void setPrice(Long price) {
         this.price = price;
-    }
-
-    public Long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 
     public String getType() {
