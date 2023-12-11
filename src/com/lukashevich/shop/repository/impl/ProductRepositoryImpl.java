@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ProductRepositoryImpl extends BaseRepository<Product> implements ProductRepository {
 
-    public ProductRepositoryImpl () {
+    public ProductRepositoryImpl() {
     }
 
     @Override

@@ -11,14 +11,11 @@ import com.lukashevich.shop.utils.FileUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 public class ShopRepositoryImpl extends BaseRepository<Shop> implements ShopRepository {
 

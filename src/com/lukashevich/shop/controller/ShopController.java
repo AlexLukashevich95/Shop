@@ -1,6 +1,5 @@
 package com.lukashevich.shop.controller;
 
-import com.lukashevich.shop.model.Product;
 import com.lukashevich.shop.model.ProductShop;
 import com.lukashevich.shop.model.Shop;
 import com.lukashevich.shop.service.ShopService;
@@ -39,16 +38,16 @@ public class ShopController {
         Shop shop = new Shop();
         try {
             shop = shopService.getShopById(id);
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e);
         }
         return shop;
     }
 
     public Shop addProductToShop(Shop shop) {
-        try{
+        try {
             return shopService.addProductToShop(shop);
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e);
         }
         return shop;
