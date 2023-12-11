@@ -23,4 +23,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProducts() throws IOException {
         return productRepository.getAllProducts();
     }
+
+    @Override
+    public Product getProductById(Long id) throws IOException {
+        return productRepository.getProductById(id);
+    }
 }

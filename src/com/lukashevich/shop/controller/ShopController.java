@@ -36,25 +36,25 @@ public class ShopController {
     }
 
     public Shop getShopById(Long id) {
-        return shopService.getShopById(id);
+        Shop shop = new Shop();
+        try {
+            shop = shopService.getShopById(id);
+        }catch (IOException e) {
+            System.out.println(e);
+        }
+        return shop;
     }
 
-    public Shop addProductToShop(ProductShop productShop, Shop shop) {
-        try {
-            shopService.addProductToShop(productShop, shop);
-        } catch (IOException e) {
+    public Shop addProductToShop(Shop shop) {
+        try{
+            return shopService.addProductToShop(shop);
+        }catch (IOException e) {
             System.out.println(e);
         }
         return shop;
     }
 
     public List<ProductShop> getProductsInShop(Shop shop) {
-        List<ProductShop> productShopList = new ArrayList<>();
-        try {
-            productShopList = shopService.getProductsInShop(shop);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-        return productShopList;
+        return shopService.getProductsInShop(shop);
     }
 }

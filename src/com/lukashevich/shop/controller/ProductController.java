@@ -1,6 +1,7 @@
 package com.lukashevich.shop.controller;
 
 import com.lukashevich.shop.model.Product;
+import com.lukashevich.shop.model.Shop;
 import com.lukashevich.shop.service.ProductService;
 
 import java.io.IOException;
@@ -31,6 +32,16 @@ public class ProductController {
             System.out.println(e);
         }
         return products;
+    }
+
+    public Product getProductById(Long id) {
+        Product product = new Product();
+        try {
+            product = productService.getProductById(id);
+        }catch (IOException e) {
+            System.out.println(e);
+        }
+        return product;
     }
 
 }

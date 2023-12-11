@@ -12,9 +12,9 @@ public interface ShopService {
 
     List<Shop> getAllShops() throws IOException;
 
-    Shop getShopById(Long id);
+    Shop getShopById(Long id) throws IOException;
 
-    Shop addProductToShop(ProductShop productShop, Shop shop) throws IOException;
+    Shop addProductToShop(Shop shop) throws IOException;
 
-    List<ProductShop> getProductsInShop(Shop shop) throws IOException;
+    List<ProductShop> getProductsInShop(Shop shop);
 }

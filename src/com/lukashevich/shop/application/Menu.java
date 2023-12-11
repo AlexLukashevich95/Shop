@@ -10,10 +10,7 @@ import com.lukashevich.shop.utils.PropertiesUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
     private final ProductController productController;
@@ -28,7 +25,7 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
         loop:
         while (true) {
-            System.out.println("Choose operation : 1-add shop, 2-add product, 3-add products to shop, 4-show all shops, 5-show all products, 0-exit");
+            System.out.println("Choose operation : 1-add shop, 2-add product, 3-add products to shop, 4-show all shops, 5-show all products, 6-show all products in shop, 0-exit");
             try {
                 switch (sc.nextInt()) {
                     case 0:
@@ -53,6 +50,7 @@ public class Menu {
                         productController.saveProduct(product);
                         break;
                     case 3:
+                        shopController.getAllShops().forEach(this::printShop);
                         System.out.println("Choose shop by id");
                         Shop shop1 = shopController.getShopById(inputNumberLong());
                         addProductsToShop(shop1);
@@ -64,8 +62,9 @@ public class Menu {
                         productController.getAllProducts().forEach(this::printProduct);
                         break;
                     case 6:
+                        shopController.getAllShops().forEach(this::printShop);
                         System.out.println("Please choose which shop products you want to see");
-                        Shop shop2 = shopController.getAllShops().get(inputNumber());
+                        Shop shop2 = shopController.getShopById(inputNumberLong());
                         shopController.getProductsInShop(shop2).forEach(this::printProductsInShop);
                         break;
                     default:
@@ -87,7 +86,8 @@ public class Menu {
     }
 
     private void printProductsInShop(ProductShop productShop) {
-        //System.out.println("name: " + productShop.getName() + " || type: " + productShop.getType() + "|| price: " + productShop.getPrice() + "|| quantity: " + productShop.getQuantity() + " || Date of adding: " + getDateInSpecFormat(productShop.getDateOfAdding()));
+        Product product = productController.getProductById(productShop.getIdProduct());
+        System.out.println("name: " + product.getName() + " || type: " + product.getType() + "|| price: " + product.getPrice() + "|| quantity: " + productShop.getQuantity());
     }
 
     private Address setAddress() {
@@ -102,6 +102,7 @@ public class Menu {
 
     public Shop addProductsToShop(Shop shop) {
         List<Product> productList = productController.getAllProducts();
+        List<ProductShop> productShopList = shop.getProducts();
         Scanner input = new Scanner(System.in);
         loopProducts:
         while (true) {
@@ -115,16 +116,19 @@ public class Menu {
                         System.out.println("Choose product by id");
                         Long id = inputNumberLong();
                         ProductShop productShop = new ProductShop();
-                        productShop.setIdShop(id);
+                        productShop.setIdShop(shop.getId());
+                        productShop.setIdProduct(id);
                         System.out.println("Write product quantity");
                         productShop.setQuantity(inputNumberLong());
-                        shop = shopController.addProductToShop(productShop, shop);
+                        productShopList.add(productShop);
                     } else {
                         System.out.println("There is no products in database");
                         break loopProducts;
                     }
                     break;
             }
+            shop.setProducts(productShopList);
+            shopController.addProductToShop(shop);
         }
         return shop;
     }

@@ -59,7 +59,7 @@ public abstract class BaseRepository<T extends BaseModel> {
         for (T element : objects) {
             if (element.getId().equals(id)) {
                 object = element;
-                break;
+                break; 
             }
         }
         return object;

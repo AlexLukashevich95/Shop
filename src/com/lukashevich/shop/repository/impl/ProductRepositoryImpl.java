@@ -21,5 +21,10 @@ public class ProductRepositoryImpl extends BaseRepository<Product> implements Pr
         return super.getAll();
     }
 
+    @Override
+    public Product getProductById(Long id) throws IOException {
+        return super.getById(id);
+    }
+
 
 }

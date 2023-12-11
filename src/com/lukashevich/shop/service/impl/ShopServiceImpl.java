@@ -26,18 +26,18 @@ public class ShopServiceImpl  implements ShopService {
     }
 
     @Override
-    public Shop getShopById(Long id){
+    public Shop getShopById(Long id) throws IOException {
         return shopRepository.getShopById(id);
     }
 
     @Override
-    public Shop addProductToShop(ProductShop productShop,Shop shop) throws IOException {
-        return shopRepository.addProductToShop(productShop,shop);
+    public Shop addProductToShop(Shop shop) throws IOException {
+        return shopRepository.addProductToShop(shop);
     }
 
     @Override
-    public List<ProductShop> getProductsInShop(Shop shop) throws IOException {
-        return null;
+    public List<ProductShop> getProductsInShop(Shop shop) {
+        return shopRepository.getProductsInShop(shop);
     }
 
 }
