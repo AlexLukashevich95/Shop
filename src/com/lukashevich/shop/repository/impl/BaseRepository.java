@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.lukashevich.shop.model.BaseModel;
+import com.lukashevich.shop.model.Shop;
 import com.lukashevich.shop.utils.FileUtils;
 
 import java.io.File;
@@ -29,11 +30,22 @@ public abstract class BaseRepository<T extends BaseModel> {
 
     public T save(T object) throws IOException {
         File file = FileUtils.getOrCreateFile(tClass);
-        List<T> objects = getAll();
-        object.setId(getNextId(objects));
-        Date date = new Date();
-        object.setDateOfAdding(date);
-        objects.add(object);
+        List<T> objects = getAll(); //сначала хотел реализовать просто через проверку id на null значение,
+        //Но потом решил, что на всякий лучше сделать проверку в БД.
+        if (object.getId()!= null) {
+            for (T element : objects) {
+                if (element.getId().equals(object.getId())) {
+                    objects.remove(element);
+                    objects.add(object);
+                    break;
+                }
+            }
+        }else{
+            object.setId(getNextId(objects));
+            Date date = new Date();
+            object.setDateOfAdding(date);
+            objects.add(object);
+        }
         try (FileWriter writer = new FileWriter(file, false)) {
             writer.write(gson.toJson(objects));
             writer.flush();

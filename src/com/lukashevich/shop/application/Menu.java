@@ -114,7 +114,7 @@ public class Menu {
                 case 0:
                     break loopProducts;
                 case 1:
-                    if (productList.size() > 0) {
+                    if (!productList.isEmpty()) {
                         productList.forEach(this::printProduct);
                         System.out.println("Choose product by id");
                         Long id = inputNumberLong();
