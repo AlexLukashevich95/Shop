@@ -1,6 +1,5 @@
 package com.lukashevich.shop.service.impl;
 
-import com.lukashevich.shop.model.ProductShop;
 import com.lukashevich.shop.model.Shop;
 import com.lukashevich.shop.repository.ShopRepository;
 import com.lukashevich.shop.service.ShopService;
@@ -28,16 +27,6 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public Shop getShopById(Long id) throws IOException {
         return shopRepository.getShopById(id);
-    }
-
-    @Override
-    public Shop addProductToShop(Shop shop) throws IOException {
-        return shopRepository.addProductToShop(shop);
-    }
-
-    @Override
-    public List<ProductShop> getProductsInShop(Shop shop) {
-        return shopRepository.getProductsInShop(shop);
     }
 
 }

@@ -1,22 +1,23 @@
 package com.lukashevich.shop.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 public class Shop extends BaseModel {
     private String name;
     private Address address;
-    private List<ProductShop> products;
+    private Map<Long, ProductShop> products;
 
-    public Shop(Long id,String name, Address address, List<ProductShop> products, Date dateOfAdding) {
+    public Shop(Long id, String name, Address address, Map<Long, ProductShop> products, Date dateOfAdding) {
         super(id, dateOfAdding);
-        this.name=name;
+        this.name = name;
         this.address = address;
         this.products = products;
     }
 
     public Shop() {
     }
+
     public String getName() {
         return name;
     }
@@ -24,6 +25,7 @@ public class Shop extends BaseModel {
     public void setName(String name) {
         this.name = name;
     }
+
     public Address getAddress() {
         return address;
     }
@@ -32,11 +34,11 @@ public class Shop extends BaseModel {
         this.address = address;
     }
 
-    public List<ProductShop> getProducts() {
+    public Map<Long, ProductShop> getProducts() {
         return products;
     }
 
-    public void setProducts(List<ProductShop> products) {
+    public void setProducts(Map<Long, ProductShop> products) {
         this.products = products;
     }
 }

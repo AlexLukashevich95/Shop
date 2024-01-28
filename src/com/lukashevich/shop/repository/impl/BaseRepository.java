@@ -30,10 +30,26 @@ public abstract class BaseRepository<T extends BaseModel> {
     public T save(T object) throws IOException {
         File file = FileUtils.getOrCreateFile(tClass);
         List<T> objects = getAll();
-        object.setId(getNextId(objects));
         Date date = new Date();
         object.setDateOfAdding(date);
-        objects.add(object);
+
+        boolean found = false;
+
+        for (int i = 0; i < objects.size(); i++) {
+            T existingObject = objects.get(i);
+            if (existingObject.getId().equals(object.getId())) {
+                // Объект с таким же ID уже существует, перезаписываем его
+                objects.set(i, object);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            // Если объект с таким ID не найден, добавляем новый объект
+            object.setId(getNextId(objects));
+            objects.add(object);
+        }
         try (FileWriter writer = new FileWriter(file, false)) {
             writer.write(gson.toJson(objects));
             writer.flush();
@@ -54,14 +70,12 @@ public abstract class BaseRepository<T extends BaseModel> {
 
     public T getById(Long id) throws IOException {
         List<T> objects = getAll();
-        T object = null;  //не особо понимаю , как правильно инициализировать. new Object и new T не подходят
         for (T element : objects) {
             if (element.getId().equals(id)) {
-                object = element;
-                break;
+                return element;
             }
         }
-        return object;
+        return null;
     }
 
     private Long getNextId(List<T> objects) {

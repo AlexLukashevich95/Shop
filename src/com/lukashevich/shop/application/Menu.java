@@ -10,10 +10,7 @@ import com.lukashevich.shop.utils.PropertiesUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
     private final ProductController productController;
@@ -28,7 +25,10 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
         loop:
         while (true) {
-            System.out.println("Choose operation : 1-add shop, 2-add product, 3-add products to shop, 4-show all shops, 5-show all products, 6-show all products in shop, 0-exit");
+            System.out.println(
+                    "Choose operation : 1-add shop, 2-add product, 3-add products to shop, " +
+                            " 4-show all shops, 5-show all products, 6-show all products in shop, " +
+                            " 0-exit");
             try {
                 switch (sc.nextInt()) {
                     case 0:
@@ -68,7 +68,7 @@ public class Menu {
                         shopController.getAllShops().forEach(this::printShop);
                         System.out.println("Please choose which shop products you want to see");
                         Shop shop2 = shopController.getShopById(inputNumberLong());
-                        shopController.getProductsInShop(shop2).forEach(this::printProductsInShop);
+                        printProductsInShop(shop2.getProducts());
                         break;
                     default:
                         System.out.println("Please input proposed option");
@@ -88,9 +88,12 @@ public class Menu {
         System.out.println("name: " + product.getName() + " || type: " + product.getType() + "|| price: " + product.getPrice() + " || Date of adding: " + getDateInSpecFormat(product.getDateOfAdding()));
     }
 
-    private void printProductsInShop(ProductShop productShop) {
-        Product product = productController.getProductById(productShop.getIdProduct());
-        System.out.println("name: " + product.getName() + " || type: " + product.getType() + "|| price: " + product.getPrice() + "|| quantity: " + productShop.getQuantity());
+    private void printProductsInShop(Map<Long, ProductShop> productsShop) {
+
+        for (Map.Entry<Long, ProductShop> entry : productsShop.entrySet()) {
+            Product product = productController.getProductById(entry.getKey());
+            System.out.println("name: " + product.getName() + " || type: " + product.getType() + "|| price: " + product.getPrice() + "|| quantity: " + entry.getValue().getQuantity());
+        }
     }
 
     private Address setAddress() {
@@ -105,7 +108,10 @@ public class Menu {
 
     public Shop addProductsToShop(Shop shop) {
         List<Product> productList = productController.getAllProducts();
-        List<ProductShop> productShopList = shop.getProducts();
+        Map<Long, ProductShop> productShopList = shop.getProducts();
+        if (productShopList == null) {
+            productShopList = new HashMap<>();
+        }
         Scanner input = new Scanner(System.in);
         loopProducts:
         while (true) {
@@ -119,20 +125,18 @@ public class Menu {
                         System.out.println("Choose product by id");
                         Long id = inputNumberLong();
                         ProductShop productShop = new ProductShop();
-                        productShop.setIdShop(shop.getId());
-                        productShop.setIdProduct(id);
                         System.out.println("Write product quantity");
                         productShop.setQuantity(inputNumberLong());
-                        productShopList.add(productShop);
+                        productShopList.put(id, productShop);
                     } else {
                         System.out.println("There is no products in database");
                         break loopProducts;
                     }
                     break;
             }
-            shop.setProducts(productShopList);
-            shopController.addProductToShop(shop);
         }
+        shop.setProducts(productShopList);
+        shopController.saveShop(shop);
         return shop;
     }
 
@@ -142,22 +146,6 @@ public class Menu {
         while (true) {
             try {
                 result = input.nextLong();
-                input.nextLine();
-                break;
-            } catch (InputMismatchException e) {
-                input.nextLine();
-                System.out.println("Incorrect type of data. Please use numbers");
-            }
-        }
-        return result;
-    }
-
-    private int inputNumber() {
-        int result;
-        Scanner input = new Scanner(System.in);
-        while (true) {
-            try {
-                result = input.nextInt();
                 input.nextLine();
                 break;
             } catch (InputMismatchException e) {
