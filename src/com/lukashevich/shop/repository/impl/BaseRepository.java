@@ -33,20 +33,11 @@ public abstract class BaseRepository<T extends BaseModel> {
         Date date = new Date();
         object.setDateOfAdding(date);
 
-        boolean found = false;
+        Object existingObject = objects.stream().filter(obj -> obj.getId().equals(object.getId())).findFirst().orElse(null);
 
-        for (int i = 0; i < objects.size(); i++) {
-            T existingObject = objects.get(i);
-            if (existingObject.getId().equals(object.getId())) {
-                // Объект с таким же ID уже существует, перезаписываем его
-                objects.set(i, object);
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            // Если объект с таким ID не найден, добавляем новый объект
+        if (existingObject != null) {
+            objects.set(objects.indexOf(existingObject), object);
+        } else {
             object.setId(getNextId(objects));
             objects.add(object);
         }
@@ -86,6 +77,7 @@ public abstract class BaseRepository<T extends BaseModel> {
                 maxId = object.getId();
             }
         }
+
         return maxId + 1;
     }
 }

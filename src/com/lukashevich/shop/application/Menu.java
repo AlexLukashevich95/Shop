@@ -2,6 +2,7 @@ package com.lukashevich.shop.application;
 
 import com.lukashevich.shop.controller.ProductController;
 import com.lukashevich.shop.controller.ShopController;
+import com.lukashevich.shop.dto.ProductShopDTO;
 import com.lukashevich.shop.model.Address;
 import com.lukashevich.shop.model.Product;
 import com.lukashevich.shop.model.ProductShop;
@@ -10,7 +11,10 @@ import com.lukashevich.shop.utils.PropertiesUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 public class Menu {
     private final ProductController productController;
@@ -49,7 +53,7 @@ public class Menu {
                         System.out.println("Write product type");
                         product.setType(sc.nextLine());
                         System.out.println("Write product price");
-                        product.setPrice(inputNumberLong());
+                        product.setPrice(inputNumberDouble());
                         productController.saveProduct(product);
                         break;
                     case 3:
@@ -68,7 +72,7 @@ public class Menu {
                         shopController.getAllShops().forEach(this::printShop);
                         System.out.println("Please choose which shop products you want to see");
                         Shop shop2 = shopController.getShopById(inputNumberLong());
-                        printProductsInShop(shop2.getProducts());
+                        printProductsInShop(shop2);
                         break;
                     default:
                         System.out.println("Please input proposed option");
@@ -88,11 +92,10 @@ public class Menu {
         System.out.println("name: " + product.getName() + " || type: " + product.getType() + "|| price: " + product.getPrice() + " || Date of adding: " + getDateInSpecFormat(product.getDateOfAdding()));
     }
 
-    private void printProductsInShop(Map<Long, ProductShop> productsShop) {
-
-        for (Map.Entry<Long, ProductShop> entry : productsShop.entrySet()) {
-            Product product = productController.getProductById(entry.getKey());
-            System.out.println("name: " + product.getName() + " || type: " + product.getType() + "|| price: " + product.getPrice() + "|| quantity: " + entry.getValue().getQuantity());
+    private void printProductsInShop(Shop shop) {
+        List<ProductShopDTO> productsInShop = shopController.getProductsInShop(shop.getId());
+        for (ProductShopDTO product : productsInShop) {
+            System.out.println("name: " + product.getName() + "|| price: " + product.getPrice() + "|| quantity: " + product.getQuantity());
         }
     }
 
@@ -108,10 +111,6 @@ public class Menu {
 
     public Shop addProductsToShop(Shop shop) {
         List<Product> productList = productController.getAllProducts();
-        Map<Long, ProductShop> productShopList = shop.getProducts();
-        if (productShopList == null) {
-            productShopList = new HashMap<>();
-        }
         Scanner input = new Scanner(System.in);
         loopProducts:
         while (true) {
@@ -123,11 +122,11 @@ public class Menu {
                     if (!productList.isEmpty()) {
                         productList.forEach(this::printProduct);
                         System.out.println("Choose product by id");
-                        Long id = inputNumberLong();
+                        Long productId = inputNumberLong();
                         ProductShop productShop = new ProductShop();
                         System.out.println("Write product quantity");
-                        productShop.setQuantity(inputNumberLong());
-                        productShopList.put(id, productShop);
+                        productShop.setQuantity(inputNumberInt());
+                        shop = shopController.addProductToShop(shop.getId(), productId, productShop);
                     } else {
                         System.out.println("There is no products in database");
                         break loopProducts;
@@ -135,8 +134,6 @@ public class Menu {
                     break;
             }
         }
-        shop.setProducts(productShopList);
-        shopController.saveShop(shop);
         return shop;
     }
 
@@ -146,6 +143,38 @@ public class Menu {
         while (true) {
             try {
                 result = input.nextLong();
+                input.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                input.nextLine();
+                System.out.println("Incorrect type of data. Please use numbers");
+            }
+        }
+        return result;
+    }
+
+    private Double inputNumberDouble() {
+        double result;
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            try {
+                result = input.nextDouble();
+                input.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                input.nextLine();
+                System.out.println("Incorrect type of data. Please use numbers");
+            }
+        }
+        return result;
+    }
+
+    private int inputNumberInt() {
+        int result;
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            try {
+                result = input.nextInt();
                 input.nextLine();
                 break;
             } catch (InputMismatchException e) {

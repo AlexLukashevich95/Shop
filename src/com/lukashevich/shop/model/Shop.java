@@ -1,14 +1,14 @@
 package com.lukashevich.shop.model;
 
 import java.util.Date;
-import java.util.Map;
+import java.util.List;
 
 public class Shop extends BaseModel {
     private String name;
     private Address address;
-    private Map<Long, ProductShop> products;
+    private List<ProductShop> products;
 
-    public Shop(Long id, String name, Address address, Map<Long, ProductShop> products, Date dateOfAdding) {
+    public Shop(Long id, String name, Address address, List<ProductShop> products, Date dateOfAdding) {
         super(id, dateOfAdding);
         this.name = name;
         this.address = address;
@@ -34,11 +34,11 @@ public class Shop extends BaseModel {
         this.address = address;
     }
 
-    public Map<Long, ProductShop> getProducts() {
+    public List<ProductShop> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<Long, ProductShop> products) {
+    public void setProducts(List<ProductShop> products) {
         this.products = products;
     }
 }
