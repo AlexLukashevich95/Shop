@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ProductRepositoryImpl extends BaseRepository<Product> implements ProductRepository {
 
-    public ProductRepositoryImpl () {
+    public ProductRepositoryImpl() {
     }
 
     @Override
@@ -19,6 +19,11 @@ public class ProductRepositoryImpl extends BaseRepository<Product> implements Pr
     @Override
     public List<Product> getAllProducts() throws IOException {
         return super.getAll();
+    }
+
+    @Override
+    public Product getProductById(Long id) throws IOException {
+        return super.getById(id);
     }
 
 

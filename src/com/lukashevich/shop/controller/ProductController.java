@@ -15,9 +15,9 @@ public class ProductController {
     }
 
     public Product saveProduct(Product product) {
-        try{
+        try {
             productService.saveProduct(product);
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
         return product;
@@ -25,11 +25,22 @@ public class ProductController {
 
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
-        try{
-            products=productService.getAllProducts();
-        }catch (IOException e){
+        try {
+            products = productService.getAllProducts();
+        } catch (IOException e) {
             System.out.println(e);
         }
         return products;
     }
+
+    public Product getProductById(Long id) {
+        Product product = new Product();
+        try {
+            product = productService.getProductById(id);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return product;
+    }
+
 }

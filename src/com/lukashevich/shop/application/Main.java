@@ -13,14 +13,14 @@ import com.lukashevich.shop.service.impl.ProductServiceImpl;
 import com.lukashevich.shop.service.impl.ShopServiceImpl;
 
 public class Main {
-    public static void main(String[] args){
-        ShopRepository shopRepository = new ShopRepositoryImpl();
-        ShopService shopService = new ShopServiceImpl(shopRepository);
-        ShopController shopController = new ShopController(shopService);
-
+    public static void main(String[] args) {
         ProductRepository productRepository = new ProductRepositoryImpl();
         ProductService productService = new ProductServiceImpl(productRepository);
         ProductController productController = new ProductController(productService);
+
+        ShopRepository shopRepository = new ShopRepositoryImpl();
+        ShopService shopService = new ShopServiceImpl(shopRepository, productService);
+        ShopController shopController = new ShopController(shopService);
 
         Menu menu = new Menu(productController, shopController);
         menu.runMenu();

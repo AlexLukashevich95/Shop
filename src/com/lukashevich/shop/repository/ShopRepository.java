@@ -9,4 +9,6 @@ public interface ShopRepository {
     Shop saveShop(Shop shop) throws IOException;
 
     List<Shop> getAllShops() throws IOException;
+
+    Shop getShopById(Long id) throws IOException;
 }
